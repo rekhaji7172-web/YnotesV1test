@@ -1,0 +1,40 @@
+{
+  "entities": {
+    "Task": {
+      "title": "Task",
+      "description": "A user's task to be completed.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The UID of the user who owns the task." },
+        "title": { "type": "string", "description": "The title of the task." },
+        "completed": { "type": "boolean", "description": "Whether the task is finished." },
+        "priority": { "enum": ["low", "medium", "high"], "type": "string", "description": "Priority level." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp." }
+      },
+      "required": ["userId", "title", "completed", "priority", "createdAt"]
+    },
+    "Note": {
+      "title": "Note",
+      "description": "A personal note.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The UID of the owner." },
+        "title": { "type": "string", "description": "Subject of the note." },
+        "content": { "type": "string", "description": "Text content." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last update timestamp." }
+      },
+      "required": ["userId", "title", "content", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "tasks/{taskId}": {
+      "schema": "Task",
+      "description": "Collection of tasks."
+    },
+    "notes/{noteId}": {
+      "schema": "Note",
+      "description": "Collection of notes."
+    }
+  }
+}
